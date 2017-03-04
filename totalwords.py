@@ -12,6 +12,8 @@ class totalWords:
 
         origCollection = db['totalwords']
 
+        client.close()
+
         self.results = origCollection.find({})
 
     def getWord(self, word):
@@ -27,6 +29,30 @@ class totalWords:
                 return item
 
         return 0
+
+    def saveWithIndex(self):
+
+        count = self.results.count()
+
+        tempItems = []
+
+        for i in range(count):
+
+            item = self.results[i]
+
+            item['index'] = i
+
+            tempItems.append(item)
+
+        client = MongoClient('localhost', 27017)
+
+        db = client["test"]
+
+        origCollection = db['temp']
+
+        origCollection.insert_many(tempItems)
+
+        client.close()
 
 __intance = 0
 

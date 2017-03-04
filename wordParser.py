@@ -10,7 +10,30 @@ examples = 'examples'
 
 etymologies = 'etymologies'
 
-def getEntrieOf(entrie):
+def getEntrieOf(item):
+
+    val1 = ''
+
+    val2 = ''
+
+    val3 = ''
+
+    if lexicalEntries not in item:
+
+        return val1, val2, val3
+
+    for entrie in item[lexicalEntries][0][entries]:
+        temptup = doGetEntrieOf(entrie)
+
+        val1 += temptup[0]
+
+        val2 += temptup[1]
+
+        val3 += temptup[2]
+
+    return val1, val2, val3
+
+def doGetEntrieOf(entrie):
 
     worddefinesStr = ''
 

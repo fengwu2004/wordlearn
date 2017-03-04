@@ -17,29 +17,29 @@ class wordNet:
 
         tub = wordParser.getEntrieOf(second)
 
-        if first in tub[0]:
+        if first['id'] in tub[0]:
 
             return 1
 
-        if first in tub[1]:
+        if first['id'] in tub[1]:
 
             return 1
 
-        if first in tub[2]:
+        if first['id'] in tub[2]:
 
             return 1
 
         tub = wordParser.getEntrieOf(first)
 
-        if second in tub[0]:
+        if second['id'] in tub[0]:
 
             return 1
 
-        if second in tub[1]:
+        if second['id'] in tub[1]:
 
             return 1
 
-        if second in tub[2]:
+        if second['id'] in tub[2]:
 
             return 1
 
@@ -61,7 +61,11 @@ class wordNet:
 
                 else:
 
-                    self.matrix[i][j] = self.checkHanveConnection(self.words[i], self.words[j])
+                    b = self.checkHanveConnection(self.words[i], self.words[j])
+
+                    print(b)
+
+                    self.matrix[i][j] = b
 
 
 __intance = 0
