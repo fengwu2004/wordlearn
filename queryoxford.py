@@ -1,12 +1,8 @@
 # for more information on how to install requests
 # http://docs.python-requests.org/en/master/user/install/#install
 import requests
-import json
-import pymongo
 
 lines = [line.rstrip('\n') for line in open('tsst.txt')]
-
-# TODO: replace with your own app_id and app_key
 
 app_id = 'ae2cbddb'
 
@@ -41,7 +37,7 @@ def queryOxford(word):
 
         print("请求中",  nIndex)
 
-        nIndex = nIndex + 1
+        nIndex += 1
 
         word = lines[nIndex]
 

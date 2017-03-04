@@ -1,12 +1,4 @@
-import retrive
-
 from openpyxl import Workbook
-
-words = retrive.totalWords.instance().results
-
-wb = Workbook()
-
-ws = wb.active
 
 lexicalEntries = 'lexicalEntries'
 
@@ -20,84 +12,105 @@ examples = 'examples'
 
 etymologies = 'etymologies'
 
-def getEntrieOf(entrie):
+class excelCreator:
 
-    worddefinesStr = ''
+    wb = Workbook()
 
-    examplesStr = ''
+    ws = wb.active
 
-    ety = ''
+    @staticmethod
+    def getEntrieOf(entrie):
 
-    if etymologies in entrie:
+        worddefinesStr = ''
 
-        for etymologie in entrie[etymologies]:
+        examplesStr = ''
 
-            ety += etymologie
+        ety = ''
 
-    for sense in entrie[senses]:
+        if etymologies in entrie:
 
-        if definitions in sense:
+            for etymologie in entrie[etymologies]:
+                ety += etymologie
 
-            for define in sense[definitions]:
+        for sense in entrie[senses]:
 
-                worddefinesStr += define + '\n'
+            if definitions in sense:
 
-        if examples in sense:
+                for define in sense[definitions]:
+                    worddefinesStr += define + '\n'
 
-            for example in sense[examples]:
+            if examples in sense:
 
-                examplesStr += example['text'] + '\n'
+                for example in sense[examples]:
+                    examplesStr += example['text'] + '\n'
 
-    last = worddefinesStr.rfind('\n')
+        last = worddefinesStr.rfind('\n')
 
-    if last != -1:
+        if last != -1:
+            worddefinesStr = worddefinesStr[:last]
 
-        worddefinesStr = worddefinesStr[:last]
+        last = examplesStr.rfind('\n')
 
-    last = examplesStr.rfind('\n')
+        if last != -1:
+            examplesStr = examplesStr[:last]
 
-    if last != -1:
+        return worddefinesStr, examplesStr, ety
 
-        examplesStr = examplesStr[:last]
+    @classmethod
+    def getDefinetions(cls, item):
 
-    return worddefinesStr, examplesStr, ety
+        if lexicalEntries not in item:
+            return ''
 
-def getDefinetions(item):
+        if entries not in item[lexicalEntries][0]:
+            return ''
 
-    if lexicalEntries not in item:
+        val1 = ''
 
-        return ''
+        val2 = ''
 
-    if entries not in item[lexicalEntries][0]:
+        val3 = ''
 
-        return ''
+        for entrie in item[lexicalEntries][0][entries]:
 
-    val1 = ''
+            temptup = cls.getEntrieOf(entrie)
 
-    val2 = ''
+            val1 += temptup[0]
 
-    val3 = ''
+            val2 += temptup[1]
 
-    for entrie in item[lexicalEntries][0][entries]:
+            val3 += temptup[2]
 
-        temptup = getEntrieOf(entrie)
+        return val1, val2, val3
 
-        val1 += temptup[0]
+    @classmethod
+    def writeToExcel(cls, words, fileName):
 
-        val2 += temptup[1]
+        nIndex = 0
 
-        val3 += temptup[2]
+        for word in words:
 
-    return val1, val2, val3
+            nIndex += + 1
 
-nIndex = 0
+            cls.ws['A' + str(nIndex)] = word['id']
 
-for word in words:
+            cls.ws['B' + str(nIndex)], cls.ws['C' + str(nIndex)], cls.ws['D' + str(nIndex)] = cls.getDefinetions(word)
 
-    nIndex += + 1
+        cls.wb.save(fileName)
 
-    ws['A' + str(nIndex)] = word['id']
+__intance = 0
 
-    ws['B' + str(nIndex)], ws['C' + str(nIndex)], ws['D' + str(nIndex)] = getDefinetions(word)
+def instance():
 
-wb.save("/Users/yan/code/sample.xlsx")
+    global  __intance
+
+    if __intance == 0:
+
+        __intance = excelCreator()
+
+    return __intance
+
+
+
+
+
