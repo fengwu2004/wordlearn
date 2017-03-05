@@ -12,7 +12,7 @@ class totalWords:
 
         db = client["test"]
 
-        origCollection = db['totalwords']
+        origCollection = db['origin(not delete)']
 
         client.close()
 
@@ -44,15 +44,17 @@ class totalWords:
 
         for i in range(count):
 
-            item = self.results[i]
+            item = self.results[i]['results'][0]
 
             item['index'] = i
 
-            item['def'] = item['def']
+            tup = wordParser.getEntrieOf(item)
 
-            item['exam'] = item['exam']
+            item['def'] = tup[0]
 
-            item['ety'] = item['ety']
+            item['exam'] = tup[1]
+
+            item['ety'] = tup[2]
 
             tempItems.append(item)
 
@@ -60,7 +62,7 @@ class totalWords:
 
         db = client["test"]
 
-        origCollection = db['temp']
+        origCollection = db['totalwords']
 
         origCollection.insert_many(tempItems)
 
@@ -77,3 +79,5 @@ def instance():
         __intance = totalWords()
 
     return __intance
+
+instance().saveWithIndex()

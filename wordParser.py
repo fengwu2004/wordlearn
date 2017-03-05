@@ -22,14 +22,16 @@ def getEntrieOf(item):
 
         return val1, val2, val3
 
-    for entrie in item[lexicalEntries][0][entries]:
-        temptup = doGetEntrieOf(entrie)
+    for lex in item[lexicalEntries]:
 
-        val1 += temptup[0]
+        for entrie in lex[entries]:
+            temptup = doGetEntrieOf(entrie)
 
-        val2 += temptup[1]
+            val1 += temptup[0]
 
-        val3 += temptup[2]
+            val2 += temptup[1]
+
+            val3 += temptup[2]
 
     return val1, val2, val3
 

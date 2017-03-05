@@ -1,6 +1,7 @@
 import numpy
 import totalwords
 import wordParser
+from pymongo import MongoClient
 
 class wordNet:
 
@@ -8,38 +9,36 @@ class wordNet:
 
         self.count = totalwords.instance().results.count()
 
-        self.matrix = numpy.zeros((self.count, self.count))
+        self.matrix = numpy.zeros((self.count, self.count), dtype=numpy.int)
 
         self.words = totalwords.instance().results
 
     @staticmethod
     def checkHanveConnection(first, second):
 
-        tub = wordParser.getEntrieOf(second)
+        return 1
 
-        if first['id'] in tub[0]:
-
-            return 1
-
-        if first['id'] in tub[1]:
+        if first['id'] in second['def']:
 
             return 1
 
-        if first['id'] in tub[2]:
+        if first['id'] in second['exam']:
 
             return 1
 
-        tub = wordParser.getEntrieOf(first)
-
-        if second['id'] in tub[0]:
+        if first['id'] in second['ety']:
 
             return 1
 
-        if second['id'] in tub[1]:
+        if second['id'] in first['def']:
 
             return 1
 
-        if second['id'] in tub[2]:
+        if second['id'] in first['exam']:
+
+            return 1
+
+        if second['id'] in first['ety']:
 
             return 1
 
@@ -63,10 +62,31 @@ class wordNet:
 
                     b = self.checkHanveConnection(self.words[i], self.words[j])
 
-                    print(b)
-
                     self.matrix[i][j] = b
 
+            m = self.matrix[i].tostring()
+
+            item = self.words[i]
+
+            item['links'] = m
+
+            print(i)
+
+        self.save()
+
+        print('结束了')
+
+    def save(self):
+
+        client = MongoClient('localhost', 27017)
+
+        db = client["test"]
+
+        origCollection = db['withLinks']
+
+        origCollection.insert_many(self.words)
+
+        client.close()
 
 __intance = 0
 
@@ -79,3 +99,5 @@ def instance():
         __intance = wordNet()
 
     return __intance
+
+instance().createNet()
