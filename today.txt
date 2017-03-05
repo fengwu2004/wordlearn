@@ -1,6 +1,6 @@
-help out
+help_out
 fathom
-figure out
+figure_out
 overcome
 surmount
 adversity
@@ -11,9 +11,9 @@ contrary
 obstacle
 penetrate
 needle
-one's ass off
+one's_ass_off
 lie
-walk out
+walk_out
 thrust
 purse
 receptacle
@@ -26,7 +26,7 @@ compartmemt
 division
 awful
 intensive
-get cracking
+get_cracking
 thorough
 holocaust
 mastery
@@ -38,16 +38,16 @@ divest
 trip
 moral
 annual
-step up
-I get stage fright.
+step_up
+I_get_stage_fright.
 scream
 freak
 rash
 obsess
-own up
+own_up
 confess
 religion
-for the record
+for_the_record
 wander
 tediously
 long–winded
@@ -65,12 +65,12 @@ lecture
 bitchen
 van
 wagon
-hop on (to something)
+hop_on_(to_something)
 hop
 bumblebees
 dude
 alert
-get off
+get_off
 stripper
 wizard
 controversial
@@ -81,44 +81,44 @@ interactive
 clue
 trendy
 seldom
-make it
-hook up
-be around
-make sth/sb out
+make_it
+hook_up
+be_around
+make_sth/sb_out
 equator
 pole
 entrust
 mentor
 bagel
-get it right
-Make it right
+get_it_right
+Make_it_right
 cultivate
 lay
-lay into
+lay_into
 addtion
-here you go
+here_you_go
 retract
 edible
 swill
 competent
 compete
 brief
-make a scene and create a scene
-pack up
+make_a_scene_and_create_a_scene
+pack_up
 flirt
-It's not like (clause)
+It's_not_like_(clause)
 lick
 yell
 sauce
-or what
+or_what
 reception
 tray
-head back
+head_back
 dock
-I'm beat
+I'm_beat
 exhaust
 mitten
-hang out
+hang_out
 throw
-on board
+on_board
 pinch

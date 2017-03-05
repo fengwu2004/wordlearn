@@ -66,6 +66,18 @@ class totalWords:
 
         client.close()
 
+    def save(self, words):
+
+        client = MongoClient('localhost', 27017)
+
+        db = client["test"]
+
+        origCollection = db['totalwords']
+
+        origCollection.insert_many(words)
+
+        client.close()
+
 __intance = 0
 
 def instance():

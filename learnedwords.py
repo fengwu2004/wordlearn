@@ -1,10 +1,10 @@
 from pymongo import MongoClient
+import totalwords
+import createExcel
 
 class learnedMgr:
 
-    alreadylearned = []
-
-    def __init__(self):
+    def addTo(self, words):
 
         client = MongoClient('localhost', 27017)
 
@@ -12,9 +12,33 @@ class learnedMgr:
 
         origCollection = db['learnedwords']
 
-        self.results = origCollection.find({})
+        origCollection.insert_many(words)
 
-        print("init")
+        client.close()
+
+    def createNeedReview(self):
+
+        client = MongoClient('localhost', 27017)
+
+        db = client["test"]
+
+        origCollection = db['learnedwords']
+
+        results = origCollection.find({})
+
+        items = []
+
+        for unit in results:
+
+            temp = totalwords.instance().getWord(unit)
+
+            if temp != 0:
+
+                items.append(temp)
+
+        client.close()
+
+        createExcel.instance().writeToExcel(items, '/Users/yan/code/review.xlsx')
 
 __intance = 0
 

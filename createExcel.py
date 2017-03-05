@@ -1,4 +1,5 @@
 from openpyxl import Workbook
+import totalwords
 
 lexicalEntries = 'lexicalEntries'
 
@@ -17,6 +18,20 @@ class excelCreator:
     wb = Workbook()
 
     ws = wb.active
+
+    def create(self, words, fileName):
+
+        results = []
+
+        for word in words:
+
+            item = totalwords.instance().getWord(word)
+
+            if item != 0:
+
+                results.append(item)
+
+        self.writeToExcel(self, results, fileName)
 
     @classmethod
     def writeToExcel(cls, words, fileName):
