@@ -12,29 +12,23 @@ class totalWords:
 
         db = client["test"]
 
-        origCollection = db['totalwords']
+        self.origCollection = db['totalwords']
 
-        client.close()
+        self.results = self.origCollection.find({})
 
-        self.results = origCollection.find({})
+    def checkExist(self, word):
+
+        return self.origCollection.count({'id': word}) != 0
 
     def getWord(self, word):
 
-        count = self.results.count()
+        if self.origCollection.count({'id':word}) == 0:
 
-        for i in range(count):
+            return 0
 
-            item = self.results[i]
+        result = self.origCollection.find({'id':word})
 
-            itemId = item['id']
-
-            itemId = itemId.replace('_', ' ')
-
-            if itemId == word:
-
-                return item
-
-        return 0
+        return result[0]
 
     def saveWithIndex(self):
 

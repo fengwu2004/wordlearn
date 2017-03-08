@@ -14,7 +14,7 @@ def run(lines):
 
     for line in lines:
 
-        if totalwords.instance().getWord(line) != 0:
+        if totalwords.instance().checkExist(line):
 
             continue
 
@@ -34,6 +34,10 @@ def run(lines):
 from pymongo import MongoClient
 
 def saveToTotal(results):
+
+    if len(results) == 0:
+
+        return
 
     count = totalwords.instance().results.count()
 

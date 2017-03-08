@@ -31,7 +31,7 @@ class excelCreator:
 
                 results.append(item)
 
-        self.writeToExcel(self, results, fileName)
+        self.writeToExcel(results, fileName)
 
     @classmethod
     def writeToExcel(cls, words, fileName):
