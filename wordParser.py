@@ -25,6 +25,7 @@ def getEntrieOf(item):
     for lex in item[lexicalEntries]:
 
         for entrie in lex[entries]:
+            
             temptup = doGetEntrieOf(entrie)
 
             val1 += temptup[0]
@@ -48,16 +49,22 @@ def doGetEntrieOf(entrie):
         for etymologie in entrie[etymologies]:
             ety += etymologie
 
+    if senses not in entrie:
+        
+        return '', '', ''
+    
     for sense in entrie[senses]:
 
         if definitions in sense:
 
             for define in sense[definitions]:
+                
                 worddefinesStr += define + '\n'
 
         if examples in sense:
 
             for example in sense[examples]:
+                
                 examplesStr += example['text'] + '\n'
 
     last = worddefinesStr.rfind('\n')
