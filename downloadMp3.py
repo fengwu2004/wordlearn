@@ -52,7 +52,7 @@ def getTotalWord():
 
 def run():
     
-    reviews = getLines()
+    reviews = getNeedReview()
     
     totals = getTotalWord()
     
@@ -76,7 +76,7 @@ def run():
         
         request = urllib.request.urlopen(item['url'], timeout = 10)
 
-        with open('/Users/yan/Desktop/mp3_2/' + item['id'] + '.mp3', 'wb') as f:
+        with open('/Users/yan/Desktop/mp3/' + item['id'] + '.mp3', 'wb') as f:
             
             try:
                 f.write(request.read())
