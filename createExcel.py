@@ -18,7 +18,7 @@ class excelCreator:
     wb = Workbook()
 
     ws = wb.active
-
+    
     def create(self, words, fileName):
 
         results = []
@@ -32,6 +32,10 @@ class excelCreator:
                 results.append(item)
 
         self.writeToExcel(results, fileName)
+
+    def toExcel(self, words, fileName):
+        
+        self.writeToExcel(words, fileName)
 
     @classmethod
     def writeToExcel(cls, words, fileName):
