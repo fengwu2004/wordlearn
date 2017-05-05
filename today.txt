@@ -41,7 +41,7 @@ reconcile
 shelf
 coalesce
 commemorate
-conceited
+conceitedls
 pomp
 splendour
 vagrant
@@ -68,3 +68,8 @@ curly
 typo
 horoscope
 provision
+conversation
+snuff
+up to snuff
+restful
+leverage
