@@ -61,14 +61,14 @@ def run():
 
     todaywords = getLines()
 
-    addToLearned(todaywords)
+    # addToLearned(todaywords)
 
-    needReviewWords = getNeedReview()
+    # needReviewWords = getNeedReview()
 
     query_save.run(todaywords)
 
     createExcel.instance().create(todaywords, '/Users/yan/code/today.xlsx')
 
-    createExcel.instance().create(needReviewWords, '/Users/yan/code/reivew.xlsx')
+    # createExcel.instance().create(needReviewWords, '/Users/yan/code/reivew.xlsx')
 
 run()
